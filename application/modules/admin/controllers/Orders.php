@@ -11,6 +11,12 @@ class Orders extends ADMIN_Controller {
 
 	public function index()
 	{
+		$data['orders'] = $this->AppModel->get_all_records($table = 'aw_orders',
+			$array = array('order_id >=' => '0'),
+			$join_table = '',
+			$join_criteria = '',
+			'order_id'
+			);
 		$this->template->set_layout('temp_back')
 		->build('orders/orders_view',isset($data) ? $data : NULL);
 	}
