@@ -46,12 +46,12 @@ public function set_session($user)
 {
     if($user){
         $_sess = array();
-        $_sess['u_id'] = $user->u_id;
-        $_sess['first_name'] = $user->first_name;
-        $_sess['last_name'] = $user->last_name;
-        $_sess['username'] = $user->username;
-        $_sess['is_login'] = true;
-        $_sess['permiss'] = $user->permiss;
+        $_sess['u_id']          = $user->u_id;
+        $_sess['first_name']    = $user->first_name;
+        $_sess['last_name']     = $user->last_name;
+        $_sess['username']      = $user->username;
+        $_sess['is_login']      = true;
+        $_sess['permiss']       = $user->permiss;
 
         $this->ci->session->set_userdata($_sess);
 
@@ -64,12 +64,12 @@ public function set_session($user)
 
 public function new_password($new_password)
 {
-    $id = $this->ci->session->userdata('u_id');
-    $salt = $this->salt();
-    $new_password = $this->hash_password($new_password,$salt);
-    $param['password'] = $new_password;
-    $param['salt'] = $salt;
-    $where = 'u_id = '.$id;
+    $id                 = $this->ci->session->userdata('u_id');
+    $salt               = $this->salt();
+    $new_password       = $this->hash_password($new_password,$salt);
+    $param['password']  = $new_password;
+    $param['salt']      = $salt;
+    $where              = 'u_id = '.$id;
     $this->ci->db->where($where)->update($this->table, $param);
     return TRUE;
 }

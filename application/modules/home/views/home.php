@@ -1,38 +1,18 @@
 <div id="top-banner-and-menu">
-   <div class="container">
-        
-   <div class="col-xs-12 col-sm-4 col-md-3 sidemenu-holder">
-	<div class="side-menu animate-dropdown">
-	    <div class="head"><i class="fa fa-list"></i> <?= $this->lang->line("all_categories");?></div>        
-	    <nav class="yamm megamenu-horizontal" role="navigation">
-	        <ul class="nav">
-	        <?php if (!empty($categories)) {
-	                        foreach ($categories as $key => $category) { ?>
-	            <li class="dropdown menu-item">
-	                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $category->cat_name?></a>
-	            </li><!-- /.menu-item -->
-	            <?php } }?>
-	        </ul><!-- /.nav -->
-	    </nav><!-- /.megamenu-horizontal -->
-	</div><!-- /.side-menu -->
-</div><!-- /.sidemenu-holder -->
+ <div class="container">
+       <div class="col-xs-12 col-sm-12 col-md-12 ">
+        <div id="hero">
+            <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
+                <div class="item" style="background-image: url(<?php echo base_url()?>assets/front/images/sliders/slider01.jpg);">
+                </div>
+                <div class="item" style="background-image: url(<?php echo base_url()?>assets/front/images/sliders/slider02.jpg);">
+                </div>
+            </div>
+        </div>
 
-<div class="col-xs-12 col-sm-8 col-md-9 homebanner-holder">
-<div id="hero">
-    <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
-        
-        <div class="item" style="background-image: url(<?php echo base_url()?>assets/front/images/sliders/slider01.jpg);">
-           
-        </div><!-- /.item -->
+    </div><!-- /.homebanner-holder -->
 
-        <div class="item" style="background-image: url(<?php echo base_url()?>assets/front/images/sliders/slider01.jpg);">
-        </div><!-- /.item -->
-    </div><!-- /.owl-carousel -->
-</div>
-                       
-</div><!-- /.homebanner-holder -->
-
-    </div><!-- /.container -->
+</div><!-- /.container -->
 </div><!-- /#top-banner-and-menu -->
 <br>
 
@@ -42,198 +22,81 @@
 
         <div class="product-grid-holder medium">
             <div class="col-xs-12 col-md-7 no-margin">
-                
+
                 <div class="row no-margin">
-                    <div class="col-xs-12 col-sm-4 no-margin product-item-holder size-medium hover">
+                    <?php if (!empty($products)) {
+                       foreach ($products as $key => $product) { ?>
+                       <div class="col-xs-12 col-sm-4 no-margin product-item-holder size-medium hover">
                         <div class="product-item">
                             <div class="image">
-                                <img alt="" src="<?php echo base_url()?>assets/front/images/light.jpg" data-echo="<?php echo base_url()?>assets/front/images/products/light.jpg" />
+                                <img alt="" width="90" height="90"  src="<?php echo base_url()?>assets/front/uploads/product/<?= $product->product_image?>" data-echo="<?php echo base_url()?>assets/front/uploads/product/<?= $product->product_image?>" />
                             </div>
                             <div class="body">
                                 <div class="label-discount clear"></div>
                                 <div class="title">
-                                    <a href="single-product.html">beats studio headphones official one</a>
+                                    <a href="<?php echo base_url()?>products/detail/<?php echo $product->p_id?>"><?=  (strlen($product->product_name) > 40) ? substr($product->product_name, 0,40).'...' : $product->product_name ?></a>
                                 </div>
-                                <div class="brand">beats</div>
+                                <div class="brand"><?= $product->cat_name?></div>
                             </div>
                             <div class="prices">
-                                <div class="price-current text-right">$1199.00</div>
+                                <div class="price-current text-right"><?php echo !empty($product->product_price) ? '฿'.$product->product_price : 'N/A'?></div>
                             </div>
-                            <div class="hover-area">
+                            <div class="" style="bottom: 11px;text-align: center;">
                                 <div class="add-cart-button">
-                                    <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                </div>
+                                 <?php if (empty($product->product_price)) { ?>
+                                 <a href="<?php echo base_url()?>quotation" class="le-button">
+                                    <?= $this->lang->line("quotation");?>
+                                </a>
+                                <?php } else{ ?>
+                                <a href="<?php echo base_url()?>products/detail/<?php echo $product->p_id?>" class="le-button">
+                                    <?= $this->lang->line("add_cart");?>
+                                </a>
+                                <?php } ?>
                             </div>
                         </div>
-                    </div><!-- /.product-item-holder -->
-
-                    <div class="col-xs-12 col-sm-4 no-margin product-item-holder size-medium hover">
-                        <div class="product-item">
-                            <div class="image">
-                                <img alt="" src="<?php echo base_url()?>assets/front/images/blank.gif" data-echo="<?php echo base_url()?>assets/front/images/products/light1.jpg" />
-                            </div>
-                            <div class="body">
-                                <div class="label-discount clear"></div>
-                                <div class="title">
-                                    <a href="single-product.html">playstasion 4 with four games and pad</a>
-                                </div>
-                                <div class="brand">acer</div>
-                            </div>
-                            <div class="prices">
-                                <div class="price-current text-right">$1199.00</div>
-                            </div>
-                            <div class="hover-area">
-                                <div class="add-cart-button">
-                                    <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.product-item-holder -->
-
-                    <div class="col-xs-12 col-sm-4 no-margin product-item-holder size-medium hover">
-                        <div class="product-item">
-                            <div class="image">
-                                <img alt="" src="<?php echo base_url()?>assets/front/images/blank.gif" data-echo="<?php echo base_url()?>assets/front/images/products/light2.jpg" />
-                            </div>
-                            <div class="body">
-                                <div class="label-discount clear"></div>
-                                <div class="title">
-                                    <a href="single-product.html">EOS rebel t5i DSLR Camera with 18-55mm IS STM lens</a>
-                                </div>
-                                <div class="brand">canon</div>
-                            </div>
-                            <div class="prices">
-                                <div class="price-current text-right">$1199.00</div>
-                            </div>
-                            <div class="hover-area">
-                                <div class="add-cart-button">
-                                    <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.product-item-holder -->
-                </div><!-- /.row -->
-                
-                <div class="row no-margin">
-                    
-                    <div class="col-xs-12 col-sm-4 no-margin product-item-holder size-medium hover">
-                        <div class="product-item">
-                            <div class="image">
-                                <img alt="" src="<?php echo base_url()?>assets/front/images/blank.gif" data-echo="<?php echo base_url()?>assets/front/images/products/light3.jpg" />
-                            </div>
-                            <div class="body">
-                                <div class="label-discount clear"></div>
-                                <div class="title">
-                                    <a href="single-product.html">fitbit zip wireless activity tracker - lime</a>
-                                </div>
-                                <div class="brand">fitbit zip</div>
-                            </div>
-                            <div class="prices">
-                                <div class="price-current text-right">$1199.00</div>
-                            </div>
-                            <div class="hover-area">
-                                <div class="add-cart-button">
-                                    <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.product-item-holder -->
-
-                    <div class="col-xs-12 col-sm-4 no-margin product-item-holder size-medium hover">
-                        <div class="product-item">
-                            <div class="image">
-                                <img alt="" src="<?php echo base_url()?>assets/front/images/blank.gif" data-echo="<?php echo base_url()?>assets/front/images/products/light4.jpg" />
-                            </div>
-                            <div class="body">
-                                <div class="label-discount clear"></div>
-                                <div class="title">
-                                    <a href="single-product.html">PowerShot elph 115 16MP digital camera</a>
-                                </div>
-                                <div class="brand">canon</div>
-                            </div>
-                            <div class="prices">
-                                <div class="price-current text-right">$1199.00</div>
-                            </div>
-                            <div class="hover-area">
-                                <div class="add-cart-button">
-                                    <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.product-item-holder -->
-
-                    <div class="col-xs-12 col-sm-4 no-margin product-item-holder size-medium hover">
-                        <div class="product-item">
-                            <div class="image">
-                                <img alt="" src="<?php echo base_url()?>assets/front/images/blank.gif" data-echo="<?php echo base_url()?>assets/front/images/products/light5.jpg" />
-                            </div>
-                            <div class="body">
-                                <div class="label-discount clear"></div>
-                                <div class="title">
-                                    <a href="single-product.html">netbook acer travelMate b113-E-10072</a>
-                                </div>
-                                <div class="brand">acer</div>
-                            </div>
-                            <div class="prices">
-                                <div class="price-current text-right">$1199.00</div>
-                            </div>
-                            <div class="hover-area">
-                                <div class="add-cart-button">
-                                    <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.product-item-holder -->
-
-                </div><!-- /.row -->
-            </div><!-- /.col -->
-            <div class="col-xs-12 col-md-5 no-margin">
-                <div class="product-item-holder size-big single-product-gallery small-gallery">
-                    
-                    <div id="best-seller-single-product-slider" class="single-product-slider owl-carousel">
-                        <div class="single-product-gallery-item" id="slide1">
-                            <a data-rel="prettyphoto" href="images/products/product-gallery-01.jpg">
-                                <img alt="" src="<?php echo base_url()?>assets/front/images/blank.gif" data-echo="<?php echo base_url()?>assets/front/images/products/product-gallery-01.jpg" />
-                            </a>
-                        </div><!-- /.single-product-gallery-item -->
-
-                        <div class="single-product-gallery-item" id="slide2">
-                            <a data-rel="prettyphoto" href="images/products/product-gallery-01.jpg">
-                                <img alt="" src="<?php echo base_url()?>assets/front/images/blank.gif" data-echo="<?php echo base_url()?>assets/front/images/products/product-gallery-01.jpg" />
-                            </a>
-                        </div><!-- /.single-product-gallery-item -->
-
-                        <div class="single-product-gallery-item" id="slide3">
-                            <a data-rel="prettyphoto" href="images/products/product-gallery-01.jpg">
-                                <img alt="" src="<?php echo base_url()?>assets/front/images/blank.gif" data-echo="<?php echo base_url()?>assets/front/images/products/product-gallery-01.jpg" />
-                            </a>
-                        </div><!-- /.single-product-gallery-item -->
-                    </div><!-- /.single-product-slider -->
-
-                    <div class="gallery-thumbs clearfix">
-                        <ul>
-                            <li><a class="horizontal-thumb active" data-target="#best-seller-single-product-slider" data-slide="0" href="#slide1"><img alt="" src="<?php echo base_url()?>assets/front/images/blank.gif" data-echo="<?php echo base_url()?>assets/front/images/products/gallery-thumb-01.jpg" /></a></li>
-                            <li><a class="horizontal-thumb" data-target="#best-seller-single-product-slider" data-slide="1" href="#slide2"><img alt="" src="<?php echo base_url()?>assets/front/images/blank.gif" data-echo="<?php echo base_url()?>assets/front/images/products/gallery-thumb-01.jpg" /></a></li>
-                            <li><a class="horizontal-thumb" data-target="#best-seller-single-product-slider" data-slide="2" href="#slide3"><img alt="" src="<?php echo base_url()?>assets/front/images/blank.gif" data-echo="<?php echo base_url()?>assets/front/images/products/gallery-thumb-01.jpg" /></a></li>
-                        </ul>
-                    </div><!-- /.gallery-thumbs -->
-
-                    <div class="body">
-                        <div class="label-discount clear"></div>
-                        <div class="title">
-                            <a href="single-product.html">CPU intel core i5-4670k 3.4GHz BOX B82-12-122-41</a>
-                        </div>
-                        <div class="brand">sony</div>
-                    </div>
-                    <div class="prices text-right">
-                        <div class="price-current inline">$1199.00</div>
-                        <a href="cart.html" class="le-button big inline"><?= $this->lang->line("add_cart");?></a>
                     </div>
                 </div><!-- /.product-item-holder -->
-            </div><!-- /.col -->
+                <?php } }?>
+            </div><!-- /.row -->
+        </div><!-- /.col -->
 
-        </div><!-- /.product-grid-holder -->
-    </div><!-- /.container -->
+        <div class="col-xs-12 col-md-5 no-margin">
+            <?php if (!empty($product_random)) {
+             foreach ($product_random as $key => $random) { ?>
+             <div class="product-item-holder size-big single-product-gallery small-gallery">
+                 <div id="best-seller-single-product-slider" class="single-product-slider owl-carousel">
+                    <div class="single-product-gallery-item" id="slide1">
+                        <a data-rel="prettyphoto"  href="javasrcipt:void(0)">
+                            <img alt="" width="420" height="389" src="<?php echo base_url()?>assets/front/uploads/product/<?= $random->product_image?>" data-echo="<?php echo base_url()?>assets/front/uploads/product/<?= $random->product_image?>" />
+                        </a>
+                    </div><!-- /.single-product-gallery-item -->
+                </div><!-- /.single-product-slider -->
+
+                <div class="body">
+                    <div class="label-discount clear"></div>
+                    <div class="title">
+                        <a href="<?php echo base_url()?>products/detail/<?php echo $random->p_id?>"><?=  (strlen($random->product_name) > 80) ? substr($random->product_name, 0,80).'...' : $random->product_name ?></a>
+                    </div>
+                    <div class="brand"><?= $random->cat_name?></div>
+                </div>
+                <div class="prices text-right">
+                    <div class="price-current inline"><?php echo !empty($random->product_price) ? '฿'.$random->product_price : 'N/A'?></div>
+                    <?php if (empty($random->product_price)) { ?>
+                    <a href="<?php echo base_url()?>quotation" class="le-button">
+                        <?= $this->lang->line("quotation");?>
+                    </a>
+                    <?php } else{ ?>
+                    <a href="<?php echo base_url()?>products/detail/<?php echo $product->p_id?>" class="le-button">
+                        <?= $this->lang->line("add_cart");?>
+                    </a>
+                    <?php } ?>
+                </div>
+            </div><!-- /.product-item-holder -->
+            <?php } }?>
+        </div><!-- /.col -->
+
+    </div><!-- /.product-grid-holder -->
+</div><!-- /.container -->
 </section><!-- /#bestsellers -->
 
 
@@ -243,352 +106,95 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" >
                 <li class="active"><a href="#featured" data-toggle="tab"><?= $this->lang->line("bestseller");?></a></li>
-                <li><a href="#new-arrivals" data-toggle="tab"><?= $this->lang->line("top_sale");?></a></li>
                 <li><a href="#top-sales" data-toggle="tab"><?= $this->lang->line("product_other");?></a></li>
             </ul>
+
+
 
             <!-- Tab panes -->
             <div class="tab-content">
                 <div class="tab-pane active" id="featured">
-                    <div class="product-grid-holder">
+                    <?php if (!empty($bestsellers)) {
+                     foreach ($bestsellers as $key => $bestseller) { ?>
+                     <div class="product-grid-holder">
                         <div class="col-sm-4 col-md-3  no-margin product-item-holder hover">
                             <div class="product-item">
-                                <div class="ribbon red"><span>sale</span></div> 
+                                <div class="ribbon red"><span><?= $this->lang->line("bestseller");?></span></div>
                                 <div class="image">
-                                     <img alt="" src="<?php echo base_url()?>assets/front/images/blank.gif" data-echo="<?php echo base_url()?>assets/front/images/products/light4.jpg" />
+                                 <img alt="" src="<?php echo base_url()?>assets/front/uploads/product/<?= $bestseller->product_image?>" data-echo="<?php echo base_url()?>assets/front/uploads/product/<?= $bestseller->product_image?>" />
+                             </div>
+                             <div class="body">
+                                <div class="title">
+                                    <a href="<?php echo base_url()?>products/detail/<?php echo $bestseller->p_id?>"><?=  (strlen($bestseller->product_name) > 40) ? substr($bestseller->product_name, 0,40).'...' : $bestseller->product_name ?></a>
                                 </div>
-                                <div class="body">
-                                    <div class="label-discount green">-50% sale</div>
-                                    <div class="title">
-                                        <a href="single-product.html">VAIO Fit Laptop - Windows 8 SVF14322CXW</a>
-                                    </div>
-                                    <div class="brand">sony</div>
-                                </div>
-                                <div class="prices">
-                                    <div class="price-prev">$1399.00</div>
-                                    <div class="price-current pull-right">$1199.00</div>
-                                </div>
+                                <div class="brand"><?= $bestseller->cat_name?></div>
+                            </div>
+                            <div class="prices">
+                                <div class="price-prev"></div> 
+                                <div class="price-current pull-right"><?php echo !empty($bestseller->product_price) ? '฿'.$bestseller->product_price : 'N/A'?></div>
+                            </div>
 
-                                <div class="hover-area">
-                                    <div class="add-cart-button">
-                                        <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-md-3 no-margin product-item-holder hover">
-                            <div class="product-item">
-                                <div class="ribbon blue"><span>new!</span></div> 
-                                <div class="image">
-                                    <img alt="" src="<?php echo base_url()?>assets/front/images/blank.gif" data-echo="<?php echo base_url()?>assets/front/images/products/light5.jpg" />
-                                </div>
-                                <div class="body">
-                                    <div class="label-discount clear"></div>
-                                    <div class="title">
-                                        <a href="single-product.html">White lumia 9001</a>
-                                    </div>
-                                    <div class="brand">nokia</div>
-                                </div>
-                                <div class="prices">
-                                    <div class="price-prev">$1399.00</div>
-                                    <div class="price-current pull-right">$1199.00</div>
-                                </div>
-                                <div class="hover-area">
-                                    <div class="add-cart-button">
-                                        <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-md-3 no-margin product-item-holder hover">
-                            <div class="product-item">
-
-                                <div class="image">
-                                    <img alt="" src="<?php echo base_url()?>assets/front/images/blank.gif" data-echo="<?php echo base_url()?>assets/front/images/products/light2.jpg" />
-                                </div>
-                                <div class="body">
-                                    <div class="label-discount clear"></div>
-                                    <div class="title">
-                                        <a href="single-product.html">POV Action Cam</a>
-                                    </div>
-                                    <div class="brand">sony</div>
-                                </div>
-                                <div class="prices">
-                                    <div class="price-prev">$1399.00</div>
-                                    <div class="price-current pull-right">$1199.00</div>
-                                </div>
-                                <div class="hover-area">
-                                    <div class="add-cart-button">
-                                        <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-md-3 no-margin product-item-holder hover">
-                            <div class="product-item">
-                                <div class="ribbon red"><span>sale</span></div> 
-                                <div class="ribbon green"><span>bestseller</span></div> 
-                                <div class="image">
-                                    <img alt="" src="<?php echo base_url()?>assets/front/images/blank.gif" data-echo="<?php echo base_url()?>assets/front/images/products/light4.jpg" />
-                                </div>
-                                <div class="body">
-                                    <div class="label-discount clear"></div>
-                                    <div class="title">
-                                        <a href="single-product.html">Netbook Acer TravelMate 
-                                            B113-E-10072</a>
-                                    </div>
-                                    <div class="brand">acer</div>
-                                </div>
-                                <div class="prices">
-                                    <div class="price-prev">$1399.00</div>
-                                    <div class="price-current pull-right">$1199.00</div>
-                                </div>
-                                <div class="hover-area">
-                                    <div class="add-cart-button">
-                                        <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                    </div>
-                                </div>
+                            <div class="" style="bottom: 11px;text-align: center;">
+                                <div class="add-cart-button">
+                                   <?php if (empty($bestseller->product_price)) { ?>
+                                   <a href="<?php echo base_url()?>quotation" class="le-button">
+                                    <?= $this->lang->line("quotation");?>
+                                </a>
+                                <?php } else{ ?>
+                                <a href="<?php echo base_url()?>products/detail/<?php echo $product->p_id?>" class="le-button">
+                                    <?= $this->lang->line("add_cart");?>
+                                </a>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
-                    <div class="loadmore-holder text-center">
-                        <a class="btn-loadmore" href="#">
-                            <i class="fa fa-plus"></i>
-                            load more products</a>
-                    </div> 
-
                 </div>
-                <div class="tab-pane" id="new-arrivals">
-                    <div class="product-grid-holder">
-                        
-                        <div class="col-sm-4 col-md-3 no-margin product-item-holder hover">
-                            <div class="product-item">
-                                <div class="ribbon blue"><span>new!</span></div> 
-                                <div class="image">
-                                    <img alt="" src="<?php echo base_url()?>assets/front/images/light.jpg" data-echo="<?php echo base_url()?>assets/front/images/light.jpg" />
-                                </div>
-                                <div class="body">
-                                    <div class="label-discount clear"></div>
-                                    <div class="title">
-                                        <a href="single-product.html">White lumia 9001</a>
-                                    </div>
-                                    <div class="brand">nokia</div>
-                                </div>
-                                <div class="prices">
-                                    <div class="price-prev">$1399.00</div>
-                                    <div class="price-current pull-right">$1199.00</div>
-                                </div>
-                                <div class="hover-area">
-                                    <div class="add-cart-button">
-                                        <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-md-3 no-margin product-item-holder hover">
-                            <div class="product-item">
-                                <div class="ribbon red"><span>sale</span></div> 
-                                <div class="image">
-                                    <img alt="" src="<?php echo base_url()?>assets/front/images/light.jpg" data-echo="<?php echo base_url()?>assets/front/images/light.jpg" />
-                                </div>
-                                <div class="body">
-                                    <div class="label-discount green">-50% sale</div>
-                                    <div class="title">
-                                        <a href="single-product.html">VAIO Fit Laptop - Windows 8 SVF14322CXW</a>
-                                    </div>
-                                    <div class="brand">sony</div>
-                                </div>
-                                <div class="prices">
-                                    <div class="price-prev">$1399.00</div>
-                                    <div class="price-current pull-right">$1199.00</div>
-                                </div>
+            </div>
+            <?php } }?>
+        </div>
 
-                                <div class="hover-area">
-                                    <div class="add-cart-button">
-                                        <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                    </div>
-                                </div>
-                            </div>
+        <div class="tab-pane" id="top-sales">
+         <?php if (!empty($others)) {
+            foreach ($others as $key => $other) { ?>
+            <div class="product-grid-holder">
+                <div class="col-sm-4 col-md-3  no-margin product-item-holder hover">
+                    <div class="product-item">
+                        <div class="image">
+                         <img alt="" src="<?php echo base_url()?>assets/front/uploads/product/<?= $other->product_image?>" data-echo="<?php echo base_url()?>assets/front/uploads/product/<?= $other->product_image?>" />
+                     </div>
+                     <div class="body">
+                        <div class="title">
+                            <a href="<?php echo base_url()?>products/detail/<?php echo $bestseller->p_id?>"><?=  (strlen($other->product_name) > 40) ? substr($other->product_name, 0,40).'...' : $other->product_name ?></a>
                         </div>
-                        
-                        <div class="col-sm-4 col-md-3 no-margin product-item-holder hover">
-                            <div class="product-item">
-                                <div class="ribbon red"><span>sale</span></div> 
-                                <div class="ribbon green"><span>bestseller</span></div> 
-                                <div class="image">
-                                    <img alt="" src="<?php echo base_url()?>assets/front/images/light.jpg" data-echo="<?php echo base_url()?>assets/front/images/light.jpg" />
-                                </div>
-                                <div class="body">
-                                    <div class="label-discount clear"></div>
-                                    <div class="title">
-                                        <a href="single-product.html">Netbook Acer TravelMate 
-                                            B113-E-10072</a>
-                                    </div>
-                                    <div class="brand">acer</div>
-                                </div>
-                                <div class="prices">
-                                    <div class="price-prev">$1399.00</div>
-                                    <div class="price-current pull-right">$1199.00</div>
-                                </div>
-                                <div class="hover-area">
-                                    <div class="add-cart-button">
-                                        <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-4 col-md-3 no-margin product-item-holder hover">
-                            <div class="product-item">
-
-                                <div class="image">
-                                    <img alt="" src="<?php echo base_url()?>assets/front/images/light.jpg" data-echo="<?php echo base_url()?>assets/front/images/light.jpg" />
-                                </div>
-                                <div class="body">
-                                    <div class="label-discount clear"></div>
-                                    <div class="title">
-                                        <a href="single-product.html">POV Action Cam</a>
-                                    </div>
-                                    <div class="brand">sony</div>
-                                </div>
-                                <div class="prices">
-                                    <div class="price-prev">$1399.00</div>
-                                    <div class="price-current pull-right">$1199.00</div>
-                                </div>
-                                <div class="hover-area">
-                                    <div class="add-cart-button">
-                                        <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                        <div class="brand"><?= $other->cat_name?></div>
                     </div>
-                    <div class="loadmore-holder text-center">
-                        <a class="btn-loadmore" href="#">
-                            <i class="fa fa-plus"></i>
-                            load more products</a>
-                    </div> 
-
-                </div>
-
-                <div class="tab-pane" id="top-sales">
-                    <div class="product-grid-holder">
-
-                        <div class="col-sm-4 col-md-3 no-margin product-item-holder hover">
-                            <div class="product-item">
-                                <div class="ribbon red"><span>sale</span></div> 
-                                <div class="ribbon green"><span>bestseller</span></div> 
-                                <div class="image">
-                                    <img alt="" src="<?php echo base_url()?>assets/front/images/light.jpg" data-echo="<?php echo base_url()?>assets/front/images/light.jpg" />
-                                </div>
-                                <div class="body">
-                                    <div class="label-discount clear"></div>
-                                    <div class="title">
-                                        <a href="single-product.html">Netbook Acer TravelMate 
-                                            B113-E-10072</a>
-                                    </div>
-                                    <div class="brand">acer</div>
-                                </div>
-                                <div class="prices">
-                                    <div class="price-prev">$1399.00</div>
-                                    <div class="price-current pull-right">$1199.00</div>
-                                </div>
-                                <div class="hover-area">
-                                    <div class="add-cart-button">
-                                        <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        
-                        <div class="col-sm-4 col-md-3 no-margin product-item-holder hover">
-                            <div class="product-item">
-
-                                <div class="image">
-                                    <img alt="" src="<?php echo base_url()?>assets/front/images/light.jpg" data-echo="<?php echo base_url()?>assets/front/images/light.jpg" />
-                                </div>
-                                <div class="body">
-                                    <div class="label-discount clear"></div>
-                                    <div class="title">
-                                        <a href="single-product.html">POV Action Cam</a>
-                                    </div>
-                                    <div class="brand">sony</div>
-                                </div>
-                                <div class="prices">
-                                    <div class="price-prev">$1399.00</div>
-                                    <div class="price-current pull-right">$1199.00</div>
-                                </div>
-                                <div class="hover-area">
-                                    <div class="add-cart-button">
-                                        <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-md-3 no-margin product-item-holder hover">
-                            <div class="product-item">
-                                <div class="ribbon blue"><span>new!</span></div> 
-                                <div class="image">
-                                    <img alt="" src="<?php echo base_url()?>assets/front/images/light.jpg" data-echo="<?php echo base_url()?>assets/front/images/light.jpg" />
-                                </div>
-                                <div class="body">
-                                    <div class="label-discount clear"></div>
-                                    <div class="title">
-                                        <a href="single-product.html">White lumia 9001</a>
-                                    </div>
-                                    <div class="brand">nokia</div>
-                                </div>
-                                <div class="prices">
-                                    <div class="price-prev">$1399.00</div>
-                                    <div class="price-current pull-right">$1199.00</div>
-                                </div>
-                                <div class="hover-area">
-                                    <div class="add-cart-button">
-                                        <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-md-3 no-margin product-item-holder hover">
-                            <div class="product-item">
-                                <div class="ribbon red"><span>sale</span></div> 
-                                <div class="image">
-                                    <img alt="" src="<?php echo base_url()?>assets/front/images/light.jpg" data-echo="<?php echo base_url()?>assets/front/images/light.jpg" />
-                                </div>
-                                <div class="body">
-                                    <div class="label-discount green">-50% sale</div>
-                                    <div class="title">
-                                        <a href="single-product.html">VAIO Fit Laptop - Windows 8 SVF14322CXW</a>
-                                    </div>
-                                    <div class="brand">sony</div>
-                                </div>
-                                <div class="prices">
-                                    <div class="price-prev">$1399.00</div>
-                                    <div class="price-current pull-right">$1199.00</div>
-                                </div>
-
-                                <div class="hover-area">
-                                    <div class="add-cart-button">
-                                        <a href="single-product.html" class="le-button"><?= $this->lang->line("add_cart");?></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                    <div class="prices">
+                        <div class="price-prev"></div> 
+                        <div class="price-current pull-right"><?php echo !empty($other->product_price) ? '฿'.$other->product_price : 'N/A'?></div>
                     </div>
-                    <div class="loadmore-holder text-center">
-                        <a class="btn-loadmore" href="#">
-                            <i class="fa fa-plus"></i>
-                            load more products</a>
-                    </div> 
+
+                    <div class="" style="bottom: 11px;text-align: center;">
+                        <div class="add-cart-button">
+                           <?php if (empty($other->product_price)) { ?>
+                           <a href="<?php echo base_url()?>quotation" class="le-button">
+                            <?= $this->lang->line("quotation");?>
+                        </a>
+                        <?php } else{ ?>
+                        <a href="<?php echo base_url()?>products/detail/<?php echo $product->p_id?>" class="le-button">
+                            <?= $this->lang->line("add_cart");?>
+                        </a>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <?php } }?>
+    <div class="loadmore-holder text-center">
+    </div> 
+</div>
+</div>
+</div>
+</div>
 </div>
 

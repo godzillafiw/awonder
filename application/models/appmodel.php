@@ -7,19 +7,28 @@ class AppModel extends CI_Model {
 		parent::__construct();
 	}
 
-	function get_all_records($table,$where,$join_table,$join_criteria,$order,$limit=NULL)
+	function get_all_records($table,$where,$join_table,$join_criteria,$order,$limit=NULL,$start=NULL)
 	{
 		$this->db->where($where);
 		if($join_table){
 			$this->db->join($join_table,$join_criteria);
 		}
-		$query = $this->db->order_by($order,'asc')->get($table,$limit);
+		//$this->db->limit($limit,$start);
+		$query = $this->db->order_by($order,'DESC')->get($table,$limit);
 		if ($query->num_rows() > 0){
 			return $query->result();
 		} else{
 			return NULL;
 		}
 	}
+
+	function count_product($table,$where)
+	{
+		$this->db->where($where);
+		$query = $this->db->get($table);
+		return $query->num_rows();
+	}
+
 
 	function users()
 	{
@@ -31,17 +40,19 @@ class AppModel extends CI_Model {
 		return $this->db->get('aw_categories')->result();
 	}
 
-	function payments()
+	function main_cat()
 	{
-		return $this->db->get('payment_methods')->result();
+		return $this->db->get('aw_maincat')->result();
 	}
 
-	function user_by_id($id)
+	function joincat($id)
 	{
-		return $this->db-> where(array('id'=>$id))->get('users')->result();
+		$this->db->where('mid', $id);
+		return $this->db->get('aw_categories')->result();
 	}
 
-	function insert($table,$data){
+	function insert($table,$data)
+	{
 		$this->db->insert($table, $data);
 		return $this->db->insert_id();
 	}
@@ -52,20 +63,24 @@ class AppModel extends CI_Model {
 		return TRUE;
 	}
 
-	function search_project($keyword,$where)
+	function detail($where,$id,$table)
 	{
-		//$array = array('project_title' => $keyword, 'project_code' => $keyword);
-		$this->db->like('project_title',$keyword); 
-		return $this->db->order_by('date_created','desc')	
-		->where($where)					
-		->get('projects')->result();
+		$this->db->join('aw_categories', 'aw_categories.cat_id = aw_product.c_id', 'left');
+		$data = $this->db->where($where,$id)->get($table);
+		return $data->result();
+	}
+
+	function detail_pro($where,$id,$table)
+	{
+		$this->db->join('aw_categories', 'aw_categories.cat_id = aw_product.c_id', 'left');
+		$data = $this->db->where($where,$id)->get($table);
+		return $data->result_array();
 	}
 
 	public function count_table($table)
 	{
 		return $this->db->count_all($table);
 	}
-}
 
-/* End of file appmodel.php */
-/* Location: ./application/models/appmodel.php */ 
+	
+}

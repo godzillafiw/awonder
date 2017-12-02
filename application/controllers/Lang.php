@@ -12,7 +12,12 @@ class Lang extends MY_Controller {
         $this->session->set_userdata('lang',$lang);
         redirect(base_url(),'refresh');
     }
-    
+
+     public function test()
+    {
+        echo 'test';
+    }
+        
 }
 
 /* End of file welcome.php */

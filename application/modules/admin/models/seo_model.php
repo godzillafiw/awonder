@@ -15,12 +15,11 @@ class Seo_model extends CI_Model
 		$key = array_keys($data);
 		$value = array_values($data);
 
-		 for ($i=0; $i < sizeof($data) ; $i++) { 
-		 	$sql = "UPDATE system_config SET value = '".$value[$i]."' WHERE config_key = '".$key[$i]."'";
-			 $this->db->query($sql);
-		 }
-		 
-		  return TRUE;
+		for ($i=0; $i < sizeof($data) ; $i++) { 
+			$sql = "UPDATE system_config SET value = '".$value[$i]."' WHERE config_key = '".$key[$i]."'";
+			$this->db->query($sql);
+		}
+		return TRUE;
 	}
 
 

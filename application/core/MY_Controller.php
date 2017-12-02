@@ -28,7 +28,7 @@ class MY_Controller extends MX_Controller
     }
 
     public function alert($status,$message){
-        $this->session->set_flashdata( 
+        return $this->session->set_flashdata( 
             array('msginfo' => '<div class="alert alert-success alert-dismissible">
                 <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <strong>'.$status.'!</strong> '.$message.'</div>')

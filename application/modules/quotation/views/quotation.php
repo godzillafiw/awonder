@@ -1,4 +1,19 @@
-<?php  echo modules::run('sidebar/menuhorizental'); ?>
+<div class="animate-dropdown">
+<div id="breadcrumb-alt">
+    <div class="container">
+        <div class="breadcrumb-nav-holder minimal">
+            <ul>
+                <li class="breadcrumb-item">
+                    <a href="<?= base_url()?>"><?= $this->lang->line("home");?></a>
+                </li>
+                <li class="breadcrumb-item current">
+                    <a href="javascript:void(0)"><?= $this->lang->line($this->uri->segment(1));?></a>
+                </li>
+            </ul>
+        </div><!-- .breadcrumb-nav-holder -->
+    </div><!-- /.container -->
+</div><!-- /#breadcrumb-alt -->
+</div>
 </header>
 
 <main id="contact-us" class="inner-bottom-md">
@@ -10,11 +25,11 @@
                 <section class="section leave-a-message">
                     <h2 class="bordered"><?= $this->lang->line("quotation");?></h2>
                     <?php echo $this->session->flashdata('msginfo'); ?>
-                    <form  class="contact-form cf-style-1 inner-top-xs" action="<?php echo base_url('quotation/send')?>" method="post">
+                    <form  class="contact-form cf-style-1 inner-top-xs" method="POST" action="<?= base_url('quotation/sends')?>" >
                         <div class="row field-row">
                             <div class="col-xs-12 col-sm-6">
                                 <label><?= $this->lang->line("company_name");?>*</label>
-                                <input class="le-input" name="company_name" value="">
+                                <input class="le-input" name="company_name" value=""  data-validation="required">
                                 <?php echo form_error('company_name')?>
                             </div>
                             <div class="col-xs-12 col-sm-6">
@@ -49,13 +64,11 @@
                         </div><!-- /.field-row -->
 
                         <div class="buttons-holder">
-                            <button type="submit" class="le-button huge"><?= $this->lang->line("sent_quotation");?></button>
+                            <button type="submit" id="submit" class="le-button huge"><?= $this->lang->line("sent_quotation");?></button>
                         </div><!-- /.buttons-holder -->
                     </form><!-- /.contact-form -->
                 </section><!-- /.leave-a-message -->
             </div><!-- /.col -->
-
-
         </div><!-- /.row -->
     </div><!-- /.container -->
 </main>

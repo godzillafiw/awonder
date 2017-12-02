@@ -12,7 +12,26 @@ class Contact extends MY_Controller {
         $this->template->set_layout('temp')->build('contact',isset($data) ? $data : NULL);
     }
 
-    public function send()
+    public function send() 
+    {
+        $respond = array('status' => false, 'message' => 'ส่งข้อความติดต่อเรียบร้อยแล้ว');
+        $data = array(
+            "fullname"      => $this->input->post('fullname'),
+            "email"         => $this->input->post('email'),
+            "subject"       => $this->input->post('subject'),
+            "messages"      => $this->input->post('messages'),
+            "create_at"     => date("Y-m-d h:i:s")
+            );
+        $this->db->escape($data);
+        $res = $this->AppModel->insert('aw_contacts',$data);
+        if ($res) {
+            $respond['status'] = true;
+            echo json_encode($respond);
+            exit();
+        }
+    }
+
+    public function sends() 
     {
         $this->form_validation->set_error_delimiters('<div class="text-danger" style="font-size:12px">', '</div>');
         $this->form_validation->set_rules('fullname', 'Fullname', 'trim|required');
@@ -31,6 +50,7 @@ class Contact extends MY_Controller {
             $res = $this->AppModel->insert('aw_contacts',$data);
             if ($res) {
                 $this->alert('Success','ส่งข้อมูลติดต่อของคุณเรียบร้อยแล้ว');
+                echo '<script> alert("บันทึกสำเร็จ") </script>';
                 redirect('contact','refresh');
             }
         } else {

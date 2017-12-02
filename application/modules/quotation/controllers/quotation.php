@@ -14,6 +14,27 @@ class Quotation extends MY_Controller {
 
 	public function send()
 	{
+		$respond = array('status' => false, 'message' => 'ส่งใบเสนอราคาเรียบร้อยแล้ว');
+		$data = array(
+			"company_name"	=> $this->input->post('company_name'),
+			"fullname"		=>	$this->input->post('full_name'),
+			"phone"			=>	$this->input->post('you_phone'),
+			"email"			=>	$this->input->post('you_email'),
+			"address"		=>	$this->input->post('you_address'),
+			"detail"		=>	$this->input->post('you_quotation'),
+			"create_at"     => date("Y-m-d h:i:s")
+			);
+		$this->db->escape($data);
+		$res =	$this->AppModel->insert('aw_quotation',$data);
+		if ($res) {
+			$respond['status'] = true;
+			echo json_encode($respond);
+		}
+		
+	}
+
+	public function sends()
+	{
 		$this->form_validation->set_error_delimiters('<div class="text-danger" style="font-size:12px">', '</div>');
 		$this->form_validation->set_rules('company_name', 'Company name', 'trim|required');
 		$this->form_validation->set_rules('full_name', 'Full name', 'trim|required');
@@ -41,6 +62,11 @@ class Quotation extends MY_Controller {
 			$this->index();
 		}
 
+	}
+
+	public function test()
+	{
+		phpinfo();
 	}
 
 
